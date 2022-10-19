@@ -1,0 +1,17 @@
+{% extends "misJuegos.html" %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}"> -->
+{% block contenido %}
+    <hr>
+    <p>Listado Mis Juegos ...</p>
+    {% for juego in juegos %}
+        <li>
+            {{juego}}
+            <a href="/tablero/{{juego.id}}">Jugar...</a>
+            <a href="/actualizar_juegos/{{juego.id}}">Actualizar</a>
+            <a href="/borrar_juegos/{{juego.id}}">Borrar</a>
+        </li>
+        <hr>
+    {% endfor %}
+    <a href="/crear_juegos">+ Crear Juego</a>
+{% endblock %}

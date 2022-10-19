@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppDoku</title>
+</head>
+<body>
+    <h2>AppDoku</h2>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/login/">LogIn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/registro/">Registrarse</a>
+            </li>
+        </ul>
+    </div>
+    <div class="contenido1">
+        {% block contenido_inicio %}
+            <p>Bienvenidos a AppDoku ...</p>
+        {% endblock %}
+    </div>
+</body>
+</html>

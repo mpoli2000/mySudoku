@@ -1,0 +1,12 @@
+{% extends "misJuegos.html" %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}"> -->
+{% block contenido %}
+    <p>> Actulizar Juego...</p>
+    <form method="POST">{% csrf_token %}
+        <table>
+            {{ formulario.as_table }}
+        </table>
+        <button type="submit">Actualizar</button>
+    </form>
+{% endblock %}

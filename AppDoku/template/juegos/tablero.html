@@ -1,0 +1,15 @@
+{% extends "misJuegos.html" %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}"> -->
+{% block contenido %}
+    <hr>
+    <p>Listado Mis Juegos ...</p>
+    <p>Fecha: {{juego.fecha}}</p>
+    <p>Nombre: {{juego.nombre}}</p>
+    <p>Descripción: {{juego.descripcion}}</p>
+    <p>Nivel: {{juego.nivel}}</p>
+    <p>Tablero:{{juego.sudoku_final}}</p>
+    <p>Progreso: {{juego.progreso}}</p>
+    <p>Movimientos: {{juego.movimientos}}</p>
+    <a href="/listar_juegos">+ Volver</a>
+{% endblock %}

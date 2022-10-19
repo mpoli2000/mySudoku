@@ -1,0 +1,10 @@
+{% extends "inicio.html" %}
+{% load static %}
+
+{% block contenido_inicio %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" >Iniciar Sesion</button>
+</form>
+{% endblock %}

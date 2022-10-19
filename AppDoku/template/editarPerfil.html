@@ -1,0 +1,17 @@
+
+{% extends "misJuegos.html" %}
+{% load static %}
+
+{% block contenido %}
+    <h2>Editar Perfil</h2>
+    <p>{{ usuario }}</p>
+
+    <form method="POST">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Editar perfil">
+    </form>
+    <br>
+    <a href="/perfil/cambiarClave/">Cambiar Contraseña</a>
+{% endblock %}
