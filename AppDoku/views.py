@@ -107,18 +107,22 @@ def verPerfil(request):
 
 @login_required
 def listar_juegos(request):
-    juegos = MiJuego.objects.all()
+    usuario = request.user
+    juegos = MiJuego.objects.filter(user_id = usuario.id)
     return render(request, 'juegos/listar_juegos.html', {'juegos': juegos})
 
 import datetime
+
 @login_required
 def crear_juegos(request):
+    usuario = request.user
     if request.method == 'POST':
-        n = request.POST['nivel']
+        nivel_partida = request.POST['nivel']
         sudoku = generators.random_sudoku(avg_rank=150)
         print(type(sudoku), sudoku, len(str(sudoku)))
         print(renderers.colorful(sudoku))
-        juego = MiJuego(fecha = datetime.date(2022, 10, 19),
+        juego = MiJuego(user_id = usuario.id,
+                        fecha = datetime.date(2022, 10, 19),
                         nombre = request.POST['nombre'],
                         descripcion = request.POST['descripcion'],
                         nivel = request.POST['nivel'],
@@ -160,6 +164,13 @@ def actualizar_juegos(request, id_juego):
 @login_required
 def tablero(request, id_juego):
     juego = MiJuego.objects.get(id = id_juego)
-    sudoku = Sudoku.from_string(juego.sudoku_final, box_size=BoxSize(3,3))
-    print(renderers.colorful(sudoku))
-    return render(request, 'juegos/tablero.html', {'juego': juego})
+    sudoku_final_lst=[]
+    for fila in range(9):
+        sudoku_final_lst.append(list(juego.sudoku_final[fila*9:(fila+1)*9]))
+
+    # sudoku = Sudoku.from_string(juego.sudoku_final, box_size=BoxSize(3,3))
+    # sudoku_render = renderers.colorful(sudoku).split('\n')
+    # for line in sudoku_render:
+    #     print(line)
+
+    return render(request, 'juegos/tablero.html', {'juego': juego, 'sudoku_final_lst': sudoku_final_lst})

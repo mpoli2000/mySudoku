@@ -3,13 +3,31 @@
 <!-- <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}"> -->
 {% block contenido %}
     <hr>
-    <p>Listado Mis Juegos ...</p>
+    <h3>Listado Mis Juegos ...</h3>
     <p>Fecha: {{juego.fecha}}</p>
-    <p>Nombre: {{juego.nombre}}</p>
-    <p>Descripción: {{juego.descripcion}}</p>
-    <p>Nivel: {{juego.nivel}}</p>
-    <p>Tablero:{{juego.sudoku_final}}</p>
-    <p>Progreso: {{juego.progreso}}</p>
-    <p>Movimientos: {{juego.movimientos}}</p>
+    <p>Nombre: {{juego.nombre}}, Descripción: {{juego.descripcion}}, Nivel: {{juego.nivel}}</p>
+    <p>Tablero:</p>
+    <table style = "width: 500px; height: 500px; padding: 20px">
+    {% for fila in sudoku_final_lst %}
+    <tr>
+        {% for elemento in fila %}
+
+            {% if elemento == '0' %}
+                <td style = "border: 1px solid black; text-align: center;">
+                    <a href="">{{elemento}}</a>
+                </td>
+                {% else %}
+                <td style = "border: 1px solid black; text-align: center; background-color: gainsboro; font-size: large;">
+                    {{ elemento }}
+                </td>
+            {% endif %}
+        
+        {% endfor %}
+    </tr>    
+    {% endfor %}
+    </table>
+    <p>Progreso: {{juego.progreso}}, Movimientos: {{juego.movimientos}}</p>
     <a href="/listar_juegos">+ Volver</a>
-{% endblock %}
+    <p>Gracias por jugar a appDoku</p>
+
+    {% endblock %}
